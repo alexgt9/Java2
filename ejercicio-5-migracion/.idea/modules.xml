@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.biblioteca.app.iml" filepath="$PROJECT_DIR$/.idea/modules/com.biblioteca.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.biblioteca.export.iml" filepath="$PROJECT_DIR$/.idea/modules/com.biblioteca.export.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.biblioteca.export.csv.iml" filepath="$PROJECT_DIR$/.idea/modules/com.biblioteca.export.csv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.biblioteca.export.json.iml" filepath="$PROJECT_DIR$/.idea/modules/com.biblioteca.export.json.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.biblioteca.model.iml" filepath="$PROJECT_DIR$/.idea/modules/com.biblioteca.model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.biblioteca.service.iml" filepath="$PROJECT_DIR$/.idea/modules/com.biblioteca.service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ejercicio-5-migracion.iml" filepath="$PROJECT_DIR$/.idea/modules/ejercicio-5-migracion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/inicio.iml" filepath="$PROJECT_DIR$/.idea/modules/inicio.iml" />
+    </modules>
+  </component>
+</project>

@@ -5,5 +5,6 @@ runtime/
 biblioteca.jar
 *.bak
 .DS_Store
-.idea/
-*.iml
+# IntelliJ: el proyecto de la raíz es personal; los de cada ejercicio se comparten
+/.idea/
+/*.iml
