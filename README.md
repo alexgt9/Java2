@@ -41,6 +41,14 @@ Desde la raíz del repositorio:
 
 Los ejercicios 2, 3 y 4 continúan el anterior: empieza copiando tu `src/` del ejercicio previo, como se explica en cada README.
 
+## IntelliJ IDEA
+
+Abre **cada carpeta de ejercicio por separado** (*File → Open → `ejercicio-N-…`*), no la raíz del repositorio. Cada ejercicio tiene su propio proyecto de IntelliJ, con un módulo de IntelliJ por módulo de Java, y una configuración de ejecución **Main** lista para usar.
+
+Al abrirlo por primera vez, si IntelliJ te pide el JDK, elige uno de la versión 17 o superior.
+
+En los ejercicios 2, 3 y 4, algunos módulos (model, app…) aparecen vacíos hasta que copias tu `src/` del ejercicio anterior.
+
 ## Requisitos
 
 - **JDK 17 o superior** (recomendado JDK 21). Comprueba la versión con `java -version`.

@@ -40,17 +40,13 @@ En `src/` ya tienes los tres módulos nuevos:
 
 ## Si lo ejecutas desde IntelliJ
 
-Si desde la terminal funciona pero desde IntelliJ **no aparece ningún exportador**, no es un fallo de tu código: IntelliJ solo pone en el module path el módulo que ejecutas y sus dependencias. Como app no depende de los proveedores (y no debe), IntelliJ no los incluye y `ServiceLoader` no los encuentra.
+El proyecto de IntelliJ de este ejercicio ya está configurado: abre la carpeta `ejercicio-4-servicios` y ejecuta **Main**.
 
-Para que IntelliJ los incluya sin romper el desacoplamiento:
+Fíjate en cómo está hecho (*File → Project Structure → Modules → `com.biblioteca.app` → Dependencies*): `com.biblioteca.export.csv` y `com.biblioteca.export.json` aparecen con **Scope: Runtime**. IntelliJ solo pone en el module path el módulo que ejecutas y sus dependencias. Sin esas dos, los proveedores no estarían en el module path y `ServiceLoader` no encontraría ningún exportador.
 
-1. *File → Project Structure → Modules → `com.biblioteca.app` → Dependencies*.
-2. **+** → *Module Dependency…* y elige `com.biblioteca.export.csv` y `com.biblioteca.export.json`.
-3. Cambia el **Scope** de los dos a **Runtime**.
+Con *Runtime*, IntelliJ los incluye al ejecutar, pero app no los ve al compilar: tu `module-info.java` sigue sin `requires` de los proveedores. Con el scope por defecto (*Compile*), app podría importar `CsvExporter`, justo lo que queremos evitar.
 
-Con *Runtime*, IntelliJ los pone en el module path al ejecutar, pero app no los ve al compilar: tu `module-info.java` sigue sin `requires` de los proveedores. Con el scope por defecto (*Compile*), app podría importar `CsvExporter`, justo lo que queremos evitar.
-
-Es el mismo experimento del paso 5: un proveedor que no está en el module path, para la aplicación, no existe.
+Haz la prueba: quita esas dos dependencias y ejecuta. Es el mismo experimento del paso 5: un proveedor que no está en el module path, para la aplicación, no existe.
 
 ## Pistas
 

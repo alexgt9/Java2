@@ -43,10 +43,12 @@ javac -d out --module-source-path src --module-path inicio/lib --module <módulo
 
 ## Si lo ejecutas desde IntelliJ
 
-IntelliJ solo pone en el module path el módulo que ejecutas y sus dependencias. Para la versión modular necesitas dos cosas en *File → Project Structure → Modules*:
+Abre la carpeta `ejercicio-5-migracion`. El proyecto ya tiene un módulo de IntelliJ por cada módulo que vas a crear en `src/`, y dos configuraciones de ejecución:
 
-1. **Los proveedores, como dependencias de Runtime de app.** En `com.biblioteca.app` → *Dependencies* → **+** → *Module Dependency…*, elige `com.biblioteca.export.csv` y `com.biblioteca.export.json` y pon su **Scope** en **Runtime**. Si no, `ServiceLoader` no encuentra ningún exportador (es lo mismo que en el ejercicio 4).
-2. **La librería, como dependencia de `com.biblioteca.export.csv`.** En ese módulo → *Dependencies* → **+** → *JARs or Directories…*, elige `inicio/lib/csvlite-1.0.jar`. Es el equivalente a `--module-path inicio/lib` en la terminal.
+- **Main (inicio, classpath)**: la aplicación original, sin módulos.
+- **Main**: tu versión modular.
+
+Igual que en el ejercicio 4, `com.biblioteca.export.csv` y `com.biblioteca.export.json` son dependencias de **Runtime** de app, para que `ServiceLoader` encuentre los proveedores. Y `inicio/lib/csvlite-1.0.jar` es una librería de `com.biblioteca.export.csv`: es el equivalente de `--module-path inicio/lib` en la terminal.
 
 ## Pistas
 
