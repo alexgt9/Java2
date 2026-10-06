@@ -41,6 +41,13 @@ Para compilar a mano, la librería tiene que estar en el module path:
 javac -d out --module-source-path src --module-path inicio/lib --module <módulos separados por comas>
 ```
 
+## Si lo ejecutas desde IntelliJ
+
+IntelliJ solo pone en el module path el módulo que ejecutas y sus dependencias. Para la versión modular necesitas dos cosas en *File → Project Structure → Modules*:
+
+1. **Los proveedores, como dependencias de Runtime de app.** En `com.biblioteca.app` → *Dependencies* → **+** → *Module Dependency…*, elige `com.biblioteca.export.csv` y `com.biblioteca.export.json` y pon su **Scope** en **Runtime**. Si no, `ServiceLoader` no encuentra ningún exportador (es lo mismo que en el ejercicio 4).
+2. **La librería, como dependencia de `com.biblioteca.export.csv`.** En ese módulo → *Dependencies* → **+** → *JARs or Directories…*, elige `inicio/lib/csvlite-1.0.jar`. Es el equivalente a `--module-path inicio/lib` en la terminal.
+
 ## Pistas
 
 - La salida de `jdeps -verbose:package` es casi el diagrama de módulos: cada flecha entre paquetes de módulos distintos será un `requires`.

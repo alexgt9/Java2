@@ -38,6 +38,20 @@ En `src/` ya tienes los tres módulos nuevos:
 
 `comprobar.sh` también prueba el paso 5: borra el módulo JSON compilado y vuelve a ejecutar la aplicación, que tiene que seguir funcionando.
 
+## Si lo ejecutas desde IntelliJ
+
+Si desde la terminal funciona pero desde IntelliJ **no aparece ningún exportador**, no es un fallo de tu código: IntelliJ solo pone en el module path el módulo que ejecutas y sus dependencias. Como app no depende de los proveedores (y no debe), IntelliJ no los incluye y `ServiceLoader` no los encuentra.
+
+Para que IntelliJ los incluya sin romper el desacoplamiento:
+
+1. *File → Project Structure → Modules → `com.biblioteca.app` → Dependencies*.
+2. **+** → *Module Dependency…* y elige `com.biblioteca.export.csv` y `com.biblioteca.export.json`.
+3. Cambia el **Scope** de los dos a **Runtime**.
+
+Con *Runtime*, IntelliJ los pone en el module path al ejecutar, pero app no los ve al compilar: tu `module-info.java` sigue sin `requires` de los proveedores. Con el scope por defecto (*Compile*), app podría importar `CsvExporter`, justo lo que queremos evitar.
+
+Es el mismo experimento del paso 5: un proveedor que no está en el module path, para la aplicación, no existe.
+
 ## Pistas
 
 - La interfaz va en un paquete **exportado**. Las implementaciones, no.
