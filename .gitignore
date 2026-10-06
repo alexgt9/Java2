@@ -1,0 +1,9 @@
+out/
+mods/
+mods-*/
+runtime/
+biblioteca.jar
+*.bak
+.DS_Store
+.idea/
+*.iml

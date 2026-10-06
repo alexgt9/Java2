@@ -1,0 +1,3 @@
+# Registro de proveedores del servicio, al estilo anterior a los módulos (classpath)
+com.biblioteca.export.csv.CsvExporter
+com.biblioteca.export.json.JsonExporter
