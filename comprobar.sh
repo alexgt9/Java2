@@ -92,10 +92,39 @@ ej4() {
     lacks "$app"    '^requires com\.biblioteca\.export\.(csv|json)'                "app NO requiere ningún proveedor"
     runs  "la aplicación funciona eligiendo json" "json" java -p $d/out -m com.biblioteca.app/com.biblioteca.app.Main || return
     grep -q '{' <<<"$LAST_OUTPUT" && ok "la salida incluye JSON" || fail "la salida incluye JSON"
+    select_format $d
     # sin el módulo json (sin recompilar): la aplicación tiene que seguir funcionando
     local tmp="$d/out-sin-json"; rm -rf "$tmp"; cp -R $d/out "$tmp"; rm -rf "$tmp/com.biblioteca.export.json"
     runs  "sin el módulo json la aplicación sigue arrancando" "json" java -p "$tmp" -m com.biblioteca.app/com.biblioteca.app.Main
     rm -rf "$tmp"
+}
+
+# select_format <dir>: el formato elegido decide el exportador.
+# Si Main lista antes todos los exportadores, esa parte sale igual con cualquier entrada,
+# así que comparamos salidas: elegir un formato añade su exportación; uno desconocido, nada.
+# ponytail: "añade una exportación" = más de 50 caracteres extra; 5 libros exportados siempre lo superan
+select_format() {
+    local d="$1" app="com.biblioteca.app/com.biblioteca.app.Main" out_csv out_json out_xml
+    out_csv="$(echo csv | java -p $d/out -m $app 2>&1)"
+    out_json="$(echo json | java -p $d/out -m $app 2>&1)"
+    out_xml="$(echo xml | java -p $d/out -m $app 2>&1)"
+    local base=${#out_xml}
+
+    if [ "$out_csv" != "$out_json" ] && [ $(( ${#out_csv} - base )) -gt 50 ] && [ $(( ${#out_json} - base )) -gt 50 ]; then
+        ok "csv y json dan exportaciones distintas"
+    else
+        fail "csv y json dan exportaciones distintas" "¿Se usa el formato introducido para elegir el exportador?"
+    fi
+    for input in "" s j; do
+        local out label="${input:-(vacío)}"
+        out="$(echo "$input" | java -p $d/out -m $app 2>&1)"
+        if [ $(( ${#out} - base )) -gt 50 ]; then
+            fail "el formato «$label» no exporta nada (como un formato desconocido)" \
+                 "Has elegido un exportador cuyo nombre solo contiene «$input». Compara el nombre completo (equals / equalsIgnoreCase)."
+        else
+            ok "el formato «$label» no exporta nada (como un formato desconocido)"
+        fi
+    done
 }
 
 ej5() {
