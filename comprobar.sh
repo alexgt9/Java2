@@ -119,10 +119,10 @@ select_format() {
         local out label="${input:-(vacío)}"
         out="$(echo "$input" | java -p $d/out -m $app 2>&1)"
         if [ $(( ${#out} - base )) -gt 50 ]; then
-            fail "el formato «$label» no exporta nada (como un formato desconocido)" \
-                 "Has elegido un exportador cuyo nombre solo contiene «$input». Compara el nombre completo (equals / equalsIgnoreCase)."
+            fail "el formato «${label}» no exporta nada (como un formato desconocido)" \
+                 "Has elegido un exportador cuyo nombre solo contiene «${input}». Compara el nombre completo (equals / equalsIgnoreCase)."
         else
-            ok "el formato «$label» no exporta nada (como un formato desconocido)"
+            ok "el formato «${label}» no exporta nada (como un formato desconocido)"
         fi
     done
 }
