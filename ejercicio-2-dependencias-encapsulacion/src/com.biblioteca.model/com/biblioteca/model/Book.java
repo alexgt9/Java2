@@ -1,3 +1,5 @@
+package com.biblioteca.model;
+
 // Punto de partida del ejercicio 1: código del módulo 1, sin paquete y sin módulo.
 public class Book {
     private final String title;

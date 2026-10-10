@@ -1,4 +1,9 @@
+package com.biblioteca.app;
+
 // Punto de partida del ejercicio 1: código del módulo 1, sin paquete y sin módulo.
+import com.biblioteca.model.Book;
+import com.biblioteca.service.BookService;
+
 import java.util.List;
 
 public class Main {
@@ -10,6 +15,8 @@ public class Main {
                 new Book("Cien años de soledad", "García Márquez", 1967, 11.95, true),
                 new Book("Orgullo y prejuicio", "Jane Austen", 1813, 8.50, true));
 
-        books.forEach(System.out::println);
+        List<Book> cheapBooks = new BookService(books).cheaperThan(12.00);
+
+        cheapBooks.forEach(System.out::println);
     }
 }
